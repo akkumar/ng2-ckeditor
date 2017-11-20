@@ -12,13 +12,13 @@ import {
   ContentChildren,
   SimpleChanges,
   OnChanges
-} from '@angular/core';
-import { NG_VALUE_ACCESSOR } from '@angular/forms';
+} from "@angular/core";
+import { NG_VALUE_ACCESSOR } from "@angular/forms";
 
 import { CKButtonDirective } from "./ckbutton.directive";
 import { CKGroupDirective } from "./ckgroup.directive";
 
-declare var CKEDITOR:any;
+declare let CKEDITOR:any;
 
 /**
  * CKEditor component
@@ -26,7 +26,7 @@ declare var CKEDITOR:any;
  *  <ckeditor [(ngModel)]="data" [config]="{...}" debounce="500"></ckeditor>
  */
 @Component({
-  selector: 'ckeditor',
+  selector: "ckeditor",
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
@@ -46,11 +46,11 @@ export class CKEditorComponent implements OnChanges, AfterViewInit {
   @Output() ready = new EventEmitter();
   @Output() blur = new EventEmitter();
   @Output() focus = new EventEmitter();
-  @ViewChild('host') host: any;
+  @ViewChild("host") host: any;
   @ContentChildren(CKButtonDirective) toolbarButtons: QueryList<CKButtonDirective>;
   @ContentChildren(CKGroupDirective) toolbarGroups: QueryList<CKGroupDirective>;
 
-  _value = '';
+  _value = "";
   instance: any;
   debounceTimeout: any;
   zone: NgZone;
@@ -118,8 +118,8 @@ export class CKEditorComponent implements OnChanges, AfterViewInit {
    * CKEditor init
    */
   ckeditorInit(config: any) {
-    if (typeof CKEDITOR === 'undefined') {
-      console.warn('CKEditor 4.x is missing (http://ckeditor.com/)');
+    if (typeof CKEDITOR === "undefined") {
+      console.warn("CKEditor 4.x is missing (http://ckeditor.com/)");
 
     } else {
       if (this.readonly) {
@@ -132,13 +132,13 @@ export class CKEditorComponent implements OnChanges, AfterViewInit {
       this.instance.setData(this.value);
 
       // listen for instanceReady event
-      this.instance.on('instanceReady', (evt: any) => {
+      this.instance.on("instanceReady", (evt: any) => {
         // send the evt to the EventEmitter
         this.ready.emit(evt);
       });
 
       // CKEditor change event
-      this.instance.on('change', () => {
+      this.instance.on("change", () => {
         this.onTouched();
         let value = this.instance.getData();
 
@@ -151,18 +151,18 @@ export class CKEditorComponent implements OnChanges, AfterViewInit {
           }, parseInt(this.debounce));
 
           // Live update
-        }else {
+        } else {
           this.updateValue(value);
         }
       });
 
       // CKEditor blur event
-      this.instance.on('blur', (evt: any) => {
+      this.instance.on("blur", (evt: any) => {
         this.blur.emit(evt);
       });
 
       // CKEditor focus event
-      this.instance.on('focus', (evt: any) => {
+      this.instance.on("focus", (evt: any) => {
         this.focus.emit(evt);
       });
 
