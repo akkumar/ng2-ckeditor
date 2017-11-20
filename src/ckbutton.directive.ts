@@ -1,5 +1,5 @@
 import { Directive, OnInit, EventEmitter, Output, Input } from "@angular/core";
-import { CKEditorComponent } from './ckeditor.component';
+import { CKEditorComponent } from "./ckeditor.component";
 
 /**
  * CKGroup component
@@ -11,7 +11,7 @@ import { CKEditorComponent } from './ckeditor.component';
  *   </ckeditor>
  */
 @Directive({
-  selector:'ckbutton'
+  selector:"ckbutton"
 })
 export class CKButtonDirective implements OnInit {
 
