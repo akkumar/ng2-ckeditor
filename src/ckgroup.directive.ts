@@ -1,5 +1,5 @@
 import { Directive, Input, AfterContentInit, ContentChildren, QueryList } from "@angular/core";
-import { CKEditorComponent } from './ckeditor.component';
+import { CKEditorComponent } from "./ckeditor.component";
 import { CKButtonDirective } from "./ckbutton.directive";
 
 /**
@@ -13,7 +13,7 @@ import { CKButtonDirective } from "./ckbutton.directive";
  *   </ckeditor>
  */
 @Directive({
-  selector:'ckgroup'
+  selector:"ckgroup"
 })
 export class CKGroupDirective implements AfterContentInit {
 
